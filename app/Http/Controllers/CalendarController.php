@@ -45,7 +45,7 @@ class CalendarController extends Controller
           $eventDate = new Carbon($event->start->dateTime);
           $eventEndDate = new Carbon($event->end->dateTime);
           $eventLenth = $eventEndDate->diffInHours($eventDate);
-          $url = $this->generateURL($event->summary,$event->description,$eventDate->day,$eventDate->month,$eventDate->year,$eventDate->hour,$eventDate->minute,$eventDate->format('A'),$eventLenth,'hours');
+          $url = $this->generateCreateURL($event->summary,$event->description,$eventDate->day,$eventDate->month,$eventDate->year,$eventDate->hour,$eventDate->minute,$eventDate->format('A'),$eventLenth,'hours');
           $res = file_get_contents($url);
           if (strpos($res, 'Scheduling Conflict') !== false) {
               echo '<br/> room booked failed '.$eventId;
